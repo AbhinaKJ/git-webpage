@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
-      - run: npx ng build --base-href /pages-demo-angular/
+      - run: npx ng build --base-href /git-webpage/
       - run: cp dist/angular-app/index.html dist/angular-app/404.html
 
       - name: Deploy
