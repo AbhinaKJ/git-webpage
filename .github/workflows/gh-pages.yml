@@ -29,11 +29,11 @@ jobs:
 
       - run: npm ci
       - run: npx ng build --base-href /git-webpage/
-      - run: cp dist/angular-app/index.html dist/angular-app/404.html
+      - run: cp dist/git-web-page/index.html dist/git-web-page/404.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/angular-app/
+          publish_dir: ./dist/git-web-page/
