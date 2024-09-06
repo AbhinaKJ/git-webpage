@@ -1,1 +1,28 @@
-<h1>This is a test page.!</h1>
+<div>
+    <h3>Enter SQL Query</h3>
+    <textarea [(ngModel)]="query" rows="4" cols="50"></textarea>
+    <br />
+    <button (click)="loadData()">Run Query</button>
+    <br />
+    
+    <!-- Show error message if any -->
+    <p *ngIf="errorMessage" style="color:red;">{{ errorMessage }}</p>
+    
+    <!-- Display the results in table format -->
+    <table *ngIf="values.length">
+      <thead>
+        <tr>
+          <th *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of values">
+          <td *ngFor="let cell of row">{{ cell }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Show message if no data is available -->
+    <p *ngIf="!values.length && !errorMessage">No data available</p>
+  </div>
+  
