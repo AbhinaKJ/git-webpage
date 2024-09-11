@@ -1,28 +1,37 @@
-<div>
-    <h3>Enter SQL Query</h3>
-    <textarea [(ngModel)]="query" rows="4" cols="50"></textarea>
-    <br />
-    <button (click)="loadData()">Run Query</button>
-    <br />
-    
-    <!-- Show error message if any -->
-    <p *ngIf="errorMessage" style="color:red;">{{ errorMessage }}</p>
-    
-    <!-- Display the results in table format -->
-    <table *ngIf="values.length">
-      <thead>
-        <tr>
-          <th *ngFor="let column of columns">{{ column }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of values">
-          <td *ngFor="let cell of row">{{ cell }}</td>
-        </tr>
-      </tbody>
-    </table>
-  
-    <!-- Show message if no data is available -->
-    <p *ngIf="!values.length && !errorMessage">No data available</p>
+<div class="container mt-3">
+  <div class="input-group">
+    <div class="form-outline">
+      <input
+      type="text"
+      class="form-control"
+      placeholder="Search by tag..."
+      [formControl]="searchControl" />
+    </div>
+    <button type="button" class="btn btn-primary">
+      <i class="fas fa-search"></i>
+    </button>
   </div>
   
+  
+  <!-- Tag list using Bootstrap list-group -->
+  <div class="list-group list-group-horizontal">
+    <button type="button" class="list-group-item list-group-item-action  px-3 border-0 btn m-1"
+     *ngFor="let tag of tags"
+      [ngClass]="{'active': selectedTag === tag.tagName}" (click)="setActiveTag(tag.tagName)">
+      {{ tag.tagName }}
+    </button>
+  </div>
+  <div>
+    <h1 class="header">Results for {{ selectedTag }}</h1>
+  </div>
+  <div *ngIf="selectedTag">
+    <div class="list-group list-group-horizontal collection-grid">
+      <div *ngFor="let collection of collections"
+       class="list-group-item list-group-item-action col-md-4 mb-3 collection-item">
+        <h4>{{ collection.name }}</h4>
+        <p>{{ collection.description }}</p>
+        <a [href]="collection.url" target="_blank">{{ collection.url }}</a>
+      </div>
+    </div>
+  </div>
+</div>
