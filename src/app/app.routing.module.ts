@@ -5,8 +5,8 @@ import { CategoryDetailsComponent } from './pages/category-details/category-deta
 
 const routes: Routes = [
   { path: 'category/:name', component: CategoryDetailsComponent }, // Dynamic route for categories
-  { path: '', redirectTo: '/category/tech', pathMatch: 'full' }, // Default route
-  { path: '**', redirectTo: '/category/tech' }, // Fallback route
+  { path: '', redirectTo: '/category/javascript', pathMatch: 'full' }, // Default route
+  { path: '**', redirectTo: '/category/javascript' }, // Fallback route
 ];
 
 @NgModule({
